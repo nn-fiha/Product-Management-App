@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
-    <h2>Project Management App</h2>
-</div>
-<div class="input__form">
-    <form action="">
+      <h2>Project Management App</h2>
+    </div>
+    <div class="input__form">
+    
         <label for="">ID</label>
-        <input type="number" placeholder="ID"><br>
+        <input type="text" placeholder="ID" id="input1"/><br />
         <label for="">Product Name</label>
-        <input type="text"  placeholder="Product Name"><br>
+        <input type="text" placeholder="Product Name" id="input2" /><br />
         <label for="">Price</label>
-        <input type="number"  placeholder="Price"><br>
-        <button class="add__btn">Add</button>
-    </form>
-</div>
-</body>
+        <input type="text" placeholder="Price" id="input3" /><br />
+        <button class="add__btn" onclick="addData()">Add</button>
+      
+    </div>
+
+    <div >
+        <table id="output__list">
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
+              </tr>
+        </table>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
 </html>
