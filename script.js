@@ -58,7 +58,6 @@ function addText(msg){
 
 }
 
-
 function addData() {
   const product = getInput();
   if (validaition(product)) {
@@ -66,7 +65,6 @@ function addData() {
     productList.push(product.id);
     const msg = document.getElementById("text");
     addText(msg);
-    msg.style.display = 'visibli';
     const tblHead = document.getElementById("t__head");
     addHeading(tblHead);
     const row = createElement(product);
