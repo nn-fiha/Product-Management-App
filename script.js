@@ -1,12 +1,37 @@
 "use strict";
+let cnt=0;
 
 const productList = [];
 
+function resetForm()
+{
+    document.getElementById("id").value = '';
+    document.getElementById("name").value = '';
+    document.getElementById("price").value = '';
+    
+}
+
 function getInput() {
-  const id = document.getElementById("input1").value;
-  const name = document.getElementById("input2").value;
-  const price = document.getElementById("input3").value;
+  const id = document.getElementById("id").value;
+  const name = document.getElementById("name").value;
+  const price = document.getElementById("price").value;
   return { id, name, price };
+}
+
+function deleteRow(row,id){
+  if(confirm("Do you want to delete this record?")){
+    cnt--;
+    console.log(cnt);
+  let i= row.parentElement.parentElement;
+  document.getElementById("output__list").deleteRow(i.rowIndex);
+  productList.splice (productList.indexOf(id), 1);
+  if(cnt===0){
+    const tblHead = document.getElementById("t__head");
+    tblHead.innerHTML="";
+  }
+  resetForm();
+ 
+  }
 }
 
 
@@ -15,7 +40,9 @@ function createElement(text) {
   row.innerHTML = `<td>${text.id}</td>
                   <td>${text.name}</td>
                   <td>${text.price}</td>
-                  `;
+                  <td>
+                  <button class="delete__btn" onclick="deleteRow(this,${text.id})">Delete</button>
+                 </td>`;
   return row;
 }
 
@@ -63,15 +90,20 @@ function addText(msg) {
 
 function addData() {
   const product = getInput();
+  cnt++;
+  if(cnt>0){
   if (validaition(product)) {
     productList.push(product.id);
     const tblHead = document.getElementById("t__head");
     addHeading(tblHead);
     const row = createElement(product);
-    const targetElement = document.getElementById("output__list");
-    targetElement.appendChild(row);
+    const table = document.getElementById("output__list").getElementsByTagName('tbody')[0];
+    table.appendChild(row);
     let msg = document.getElementById("text");
     addText(msg);
+    resetForm();
+    
+  }
   }
 }
 
