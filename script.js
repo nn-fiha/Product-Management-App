@@ -1,5 +1,6 @@
 "use strict";
 let cnt=0;
+let selectedRow = null;
 
 const productList = [];
 
@@ -34,12 +35,28 @@ function deleteRow(row,id){
   }
 }
 
+function onEdit(row)
+{
+    selectedRow = row.parentElement.parentElement;
+    document.getElementById('name').value = selectedRow.cells[1].innerHTML;
+    document.getElementById('price').value = selectedRow.cells[2].innerHTML;
+}
+function updateRecord(formData)
+{
+   
+    selectedRow.cells[1].innerHTML = formData.name;
+    selectedRow.cells[2].innerHTML = formData.price;
+    document.getElementById("add-btn").innerText="update";
+}
+
 
 function createElement(text) {
   const row = document.createElement("tr");
   row.innerHTML = `<td>${text.id}</td>
                   <td>${text.name}</td>
                   <td>${text.price}</td>
+                  <td><button class="update__btn" onclick="onEdit(this)">Update</button>
+                  </td>
                   <td>
                   <button class="delete__btn" onclick="deleteRow(this,${text.id})">Delete</button>
                  </td>`;
@@ -92,18 +109,26 @@ function addData() {
   const product = getInput();
   cnt++;
   if(cnt>0){
-  if (validaition(product)) {
-    productList.push(product.id);
-    const tblHead = document.getElementById("t__head");
-    addHeading(tblHead);
-    const row = createElement(product);
-    const table = document.getElementById("output__list").getElementsByTagName('tbody')[0];
-    table.appendChild(row);
-    let msg = document.getElementById("text");
-    addText(msg);
+    if(selectedRow == null)
+    {if (validaition(product)) {
+      productList.push(product.id);
+      const tblHead = document.getElementById("t__head");
+      addHeading(tblHead);
+      const row = createElement(product);
+      const table = document.getElementById("output__list").getElementsByTagName('tbody')[0];
+      table.appendChild(row);
+      let msg = document.getElementById("text");
+      addText(msg);
+    }
+  }
+    else
+    {
+        updateRecord(product);
+    }
+    
     resetForm();
     
-  }
+  
   }
 }
 
