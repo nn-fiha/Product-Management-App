@@ -9,9 +9,13 @@ function getInput() {
   return { id, name, price };
 }
 
+
 function createElement(text) {
   const row = document.createElement("tr");
-  row.innerHTML = `<td>${text.id}</td><td>${text.name}</td><td>${text.price}</td>`;
+  row.innerHTML = `<td>${text.id}</td>
+                  <td>${text.name}</td>
+                  <td>${text.price}</td>
+                  `;
   return row;
 }
 
@@ -49,27 +53,25 @@ function validaition(product) {
   }
   return true;
 }
-function addText(msg){ 
+
+function addText(msg) {
   msg.innerHTML = `<p>Thanks for adding the product!</p>`;
   setTimeout(function () {
-    msg.style.display = 'none';
-  },1000);
- 
-
+    msg.innerHTML = "";
+  }, 1000);
 }
 
 function addData() {
   const product = getInput();
   if (validaition(product)) {
-
     productList.push(product.id);
-    const msg = document.getElementById("text");
-    addText(msg);
     const tblHead = document.getElementById("t__head");
     addHeading(tblHead);
     const row = createElement(product);
     const targetElement = document.getElementById("output__list");
     targetElement.appendChild(row);
+    let msg = document.getElementById("text");
+    addText(msg);
   }
 }
-addData();
+
