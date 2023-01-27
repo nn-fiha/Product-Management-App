@@ -4,31 +4,59 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Product Management App</title>
   </head>
   <body>
     <div class="header">
-      <h2>Project Management App</h2>
+      <h2>Product Management App</h2>
     </div>
-    <div class="input__form">
-    
-        <label for="">ID</label>
-        <input type="text" placeholder="ID" id="id"/><br />
-        <label for="">Product Name</label>
-        <input type="text" placeholder="Product Name" id="name" /><br />
-        <label for="">Price</label>
-        <input type="text" placeholder="Price" id="price" /><br />
-        <button class="add__btn" id="add-btn" onclick="addData()">Add</button>
+    <div>
+    <form  onsubmit="event.preventDefault();onFormSubmit();" class="input__form" autocomplete="off">
+      <div>
+        <label for="">ID</label><br><br>
+        <input class="form" id="id"
+          type="text"
+          name="name"
+          placeholder="ID"
+          required
+        />
+      </div><br>
+      <span id="error-id" class="error"></span>
+      <div>
+          <label for="">Name</label><br><br>
+          <input class="form" id="name"
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+          />
+        </div><br>
+        <span id="error-name" class="error"></span>
+        <div>
+          <label for="">Price</label><br><br>
+          <input class="form" id="price"
+            type="text"
+            name="name"
+            placeholder="Price"
+            required
+          />
+        </div><br>
+        <span id="error-price" class="error"></span>
+        <div> <button class="add__button" id="add-btn" onclick="addData()">Add</button></div>  
+      
+      </form>
       
     </div>
 
     <div>
 
-      <div id="text">
+      <div id="text"></div>
+      <h3>Product List</h3>
 
-      </div>
+      <div class="tbl__info">
 
-        <table id="output__list">
+        <table id="output__list" class="tbl">
 
             <thead id="t__head">
                
@@ -40,7 +68,7 @@
               
             </tbody>
         </table>
-    </div>
+      </div>
 
     <script src="./script.js"></script>
   </body>
