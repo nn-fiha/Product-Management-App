@@ -112,7 +112,8 @@ function createElement(text) {
   return row;
 }
 
-function addHeading(tblHead) {
+function addHeading(tblHead,listName) {
+  listName.innerHTML=`<span>Product List</span>`;
   tblHead.innerHTML = `<th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
@@ -169,7 +170,7 @@ function isValidInput(product) {
 {
   if (doesExist(product.id)) {
     document.getElementById("id").style.borderColor = 'red';
-    document.getElementById("error-id").innerText  = "Product ID is already exist!!!!\nPlease try with another ID";
+    document.getElementById("error-id").innerText  = "Product ID is already exist! Please try with another ID";
     return;
   }
 }
@@ -209,7 +210,8 @@ function addData() {
         if (upen==false) {
         productList.push(product.id);
         const tblHead = document.getElementById("t__head");
-        addHeading(tblHead);
+        const listName =document.getElementById("list__info");
+        addHeading(tblHead,listName);
         const row = createElement(product);
         const table = document.getElementById("output__list").getElementsByTagName("tbody")[0];
         table.appendChild(row);
